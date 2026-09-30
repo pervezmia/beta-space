@@ -1,4 +1,4 @@
-# ByteSpace Landing
+# byte-space
 
 A responsive landing page for **ByteSpace**, an online course platform where learners discover courses and creators publish and manage their own. Built from the [Figma design](https://www.figma.com/design/26TBgRjmpuxudcErJsHUfy/ByteSpace-New-Check-website?node-id=0-1&p=f&t=eQOrqJmq6rMG5b6L-0) as part of a Jr. Software Engineer (Frontend) assessment for Doin Tech Limited.
 
