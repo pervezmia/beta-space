@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+
+@theme inline {
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #0038e0;
+  --color-highlight: #c8ff00;
+}
+
+html {
+  scroll-behavior: smooth;
+}
