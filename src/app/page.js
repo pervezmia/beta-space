@@ -1,3 +1,4 @@
+import Discover from "@/components/sections/Discover";
 import Hero from "@/components/sections/Hero";
 import Partners from "@/components/sections/Partners";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <Hero></Hero>
       <Partners />
+      <Discover />
     </>
   );
 }
