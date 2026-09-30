@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { StarFill } from "@gravity-ui/icons";
 import { cn } from "@/lib/utils";
+import AvatarStack from "../ui/AvatarStack";
 
 export default function StudentsCard({ title, rating, reviews, total, avatars, className }) {
   return (
@@ -11,7 +12,7 @@ export default function StudentsCard({ title, rating, reviews, total, avatars, c
         <span className="text-slate-400">{reviews}</span>
         <StarFill aria-hidden="true" className="size-3.5 text-highlight" />
       </p>
-      <ul className="mt-3 flex items-center">
+      {/* <ul className="mt-3 flex items-center">
         {avatars.map((avatar, index) => (
           <li
             key={avatar.src}
@@ -23,7 +24,8 @@ export default function StudentsCard({ title, rating, reviews, total, avatars, c
         <li className="-ml-2.5 flex size-10 items-center justify-center rounded-full bg-highlight text-xs font-semibold text-slate-900 ring-2 ring-white">
           {total}
         </li>
-      </ul>
+      </ul> */}
+      <AvatarStack avatars={avatars} total={total} size="lg" />
     </div>
   );
 }
