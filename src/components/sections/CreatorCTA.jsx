@@ -1,11 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
+import Float from "@/components/ui/Float";
+import { cn } from "@/lib/utils";
+import { heroShapes } from "@/data/hero";
 
 export default function CreatorCTA() {
   return (
     <section
       aria-labelledby="creator-cta-heading"
-      className="relative  overflow-hidden bg-brand py-16 lg:py-20"
+      className="relative w-full overflow-hidden bg-brand py-16 lg:py-20"
       style={{
         backgroundImage: `
           linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
@@ -14,47 +18,31 @@ export default function CreatorCTA() {
         backgroundSize: "60px 60px",
       }}
     >
-      {/* Decorative shapes — left */}
-      <div aria-hidden="true" className=" pointer-events-none absolute left-0 top-0 h-full w-[220px]">
-        {/* lime squiggle top-left */}
-        <svg className="absolute left-[10px] top-[10px] w-[80px]" viewBox="0 0 80 100" fill="none">
-          <path d="M40 8 Q65 22 40 40 Q15 58 40 76 Q65 90 40 96" stroke="#c8ff00" strokeWidth="7" strokeLinecap="round" fill="none"/>
-        </svg>
-        {/* white squiggle mid-left */}
-        <svg className="absolute left-[30px] top-[45%] w-[50px]" viewBox="0 0 50 70" fill="none">
-          <path d="M25 5 Q40 18 25 32 Q10 46 25 60" stroke="white" strokeWidth="5" strokeLinecap="round" fill="none"/>
-        </svg>
-        {/* lime ring bottom-left */}
-        <div className="absolute bottom-[10px] left-[20px] size-[90px] rounded-full border-[12px] border-highlight" />
-        {/* white ring overlap */}
-        <div className="absolute bottom-[30px] left-[70px] size-[55px] rounded-full border-[8px] border-white/30" />
+      {/* ── Shapes Container (Mobile & Tablet support) ── */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div className="relative h-full w-full xl:absolute xl:inset-y-0 xl:left-1/2 xl:w-[1440px] xl:-translate-x-1/2">
+          {heroShapes.map((shape, index) => (
+            <Float
+              key={shape.src || index}
+              amplitude={shape.amplitude}
+              duration={shape.duration}
+              /* hidden xl:block er poriborte hidden md:block apply kora hoyeche, jeno md (768px+) screen thekei eituguk show kore */
+              className={cn("absolute z-20 hidden md:block opacity-60 xl:opacity-100", shape.position)}
+            >
+              <Image
+                src={shape.src}
+                alt=""
+                aria-hidden="true"
+                width={shape.width}
+                height={shape.height}
+                className="h-auto w-full"
+              />
+            </Float>
+          ))}
+        </div>
       </div>
 
-      {/* Decorative shapes — right */}
-      <div aria-hidden="true" className=" pointer-events-none absolute right-0 top-0 h-full w-[220px]">
-        {/* lime cone/triangle top-right */}
-        <div
-          className="absolute  right-[60px] top-[10px]"
-          style={{
-            width: 0, height: 0,
-            borderLeft: "28px solid transparent",
-            borderRight: "28px solid transparent",
-            borderBottom: "56px solid #c8ff00",
-          }}
-        />
-        {/* white cup/cylinder top-far-right */}
-        <div className="absolute right-[10px] top-[8px] h-[70px] w-[55px] overflow-hidden rounded-t-full border-[8px] border-white/80" />
-        {/* white squiggle mid-right */}
-        <svg className="absolute right-[20px] bottom-[20%] w-[60px]" viewBox="0 0 60 80" fill="none">
-          <path d="M30 5 Q50 20 30 38 Q10 56 30 70" stroke="white" strokeWidth="5" strokeLinecap="round" fill="none"/>
-        </svg>
-        {/* lime squiggle bottom-right */}
-        <svg className="absolute right-[10px] bottom-[10px] w-[55px]" viewBox="0 0 60 80" fill="none">
-          <path d="M30 5 Q50 20 30 38 Q10 56 30 70" stroke="#c8ff00" strokeWidth="6" strokeLinecap="round" fill="none"/>
-        </svg>
-      </div>
-
-      {/* Content */}
+      {/* ── Main Content ── */}
       <Container className="relative z-10">
         <div className="mx-auto max-w-[680px] text-center">
           <h2
@@ -65,16 +53,18 @@ export default function CreatorCTA() {
             <br />
             Creator with ByteSpace
           </h2>
-          <p className="mx-auto mt-5 max-w-[580px] text-sm leading-relaxed text-white/75">
+
+          <p className="mx-auto mt-5 max-w-[580px] text-sm leading-relaxed text-white/80 sm:text-base">
             Experience the collaboration of numerous creators and an expanding
             selection of courses. Register now and become a part of a community
             comprising over 10,000 local and international creators. Utilize our
             Course Editor, and showcase your expertise by publishing your finest
             course on the ByteSpace Course Library.
           </p>
+
           <Link
             href="/register"
-            className="mt-8 inline-flex h-11 items-center rounded-full bg-highlight px-8 text-sm font-semibold text-slate-900 transition hover:bg-highlight/90"
+            className="mt-8 inline-flex h-11 items-center rounded-full bg-highlight px-8 text-sm font-semibold text-slate-900 shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-highlight/90 active:scale-95"
           >
             Join as Creator
           </Link>
