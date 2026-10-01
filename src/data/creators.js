@@ -3,7 +3,7 @@ export const creators = [
     id: 1,
     name: "PurePearl Studio",
     role: "Passionate UI/UX, Web designer",
-    avatar: "/images/avatars/avatar-1.jpg",
+    avatar: "/images/testimonials/alex.png",
     badge: "Creator",
     bio: `Welcome to the creative world of [Creator's Name]. Here, you'll discover the passion, expertise, and inspiration that drive my creative journey. Let's explore and learn together!
 
