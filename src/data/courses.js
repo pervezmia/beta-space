@@ -1,9 +1,6 @@
-export const categories = [
-  "Featured", "Music", "Drawing & Painting", "Marketing",
-  "Animation", "Social Media", "UI/UX Design", "Cooking", "Photography",
-];
-
+export const categories = ["Featured", "Music", "Drawing & Painting", "Marketing", "Animation", "Social Media", "UI/UX Design", "Cooking", "Photography"];
 export const levels = ["Beginner", "Intermediate", "Advanced"];
+export const COURSES_PER_PAGE = 9;
 
 export const courses = [
   { id: 1, title: "Learn Figma from Basic", instructor: "purepearl studio", rating: 4.5, reviews: 120, level: "Beginner", price: 25, category: "UI/UX Design", image: "/images/courses/learn-figma.png" },
@@ -26,9 +23,6 @@ export const courses = [
   { id: 18, title: "From Idea to Startup Succ...", instructor: "startup school", rating: 4.7, reviews: 180, level: "Advanced", price: 59, category: "Photography", image: "/images/courses/startup.png" },
 ];
 
-export const COURSES_PER_PAGE = 9;
-
-
 export const courseDetails = {
   1: {
     title: "Build Digital Asset: A Comprehensive Guide",
@@ -37,13 +31,12 @@ export const courseDetails = {
     instructorRole: "Professional Creator",
     instructorAvatar: "/images/testimonials/alex.png",
     rating: 4.6,
-    reviews: 172,
     students: 799,
     level: "Intermediate",
     price: 25,
     totalLessons: 112,
     totalHours: 24,
-    image: "/images/courses/course-2.jpg",
+    image: "/images/courses/digital-asset.png",
     category: "Marketing",
     description: `Embark on an enlightening exploration into the world of digital creation with our comprehensive course "Build Digital Asset: A Comprehensive Guide." This transformative learning experience invites you to delve deep into the intricacies of crafting impactful digital content. From laying the groundwork with foundational concepts to mastering advanced techniques, this guide is meticulously curated to empower you with the skills essential for navigating the dynamic landscape of digital asset creation.
 
@@ -88,22 +81,32 @@ As you progress through the course, you'll ascend to higher levels of expertise,
     ],
     lessonContent: "Immerse yourself in this course content as we break down each module into comprehensive lessons, providing practical insights into hands-on experiences.",
     lessonProgress: { label: "Learning Progress", value: 55 },
+    reviews: {
+      average: 4.7,
+      total: 730,
+      breakdown: [
+        { stars: 5, count: 350 },
+        { stars: 4, count: 190 },
+        { stars: 3, count: 110 },
+        { stars: 2, count: 51 },
+        { stars: 1, count: 29 },
+      ],
+      items: [
+        { id: 1, name: "PurePearl Studio", role: "UI/UX Designer", avatar: "/images/testimonials/alex.png", rating: 5, date: "a year ago", comment: "The course provided me with a comprehensive understanding of digital asset creation. The lessons were in-depth, practical, and immediately applicable to my work. Highly recommended!" },
+        { id: 2, name: "Albert Flores", role: "UI/UX Designer", avatar: "/images/testimonials/james.png", rating: 5, date: "a year ago", comment: "It completely transformed my approach to digital design. The combination of theory, hands-on exercises, and real-world application made it a truly enriching experience. Excited to implement what I've learned!" },
+        { id: 3, name: "Cody Fisher", role: "UI/UX Designer", avatar: "/images/testimonials/sarah.png", rating: 5, date: "a year ago", comment: "The project showcases and critiques truly created a collaborative environment where I could showcase my work, receive valuable feedback, and refine my skills. It added a unique and valuable dimension to the learning process." },
+        { id: 4, name: "Brooklyn Simmons", role: "UI/UX Designer", avatar: "/images/testimonials/alex.png", rating: 5, date: "a year ago", comment: "The lessons on optimizing digital assets for various platforms were particularly insightful. The course adapts to the evolving digital landscape and the engaging content keeps me motivated throughout." },
+      ],
+    },
   },
 };
 
 export function getCourseDetail(id) {
-  return courseDetails[String(id)] ?? {
+  if (courseDetails[String(id)]) return courseDetails[String(id)];
+  const course = courses.find((c) => String(c.id) === String(id));
+  return {
     ...courseDetails[1],
-    title: courses.find((c) => String(c.id) === String(id))?.title ?? courseDetails[1].title,
+    title: course?.title ?? courseDetails[1].title,
     subtitle: courseDetails[1].subtitle,
   };
 }
-// courses.js e courseDetails er pore add koro:
-// export function getCourseDetail(id) {
-//   return courseDetails[String(id)] ?? {
-//     ...courseDetails[1],
-//     title: courses.find((c) => String(c.id) === String(id))?.title ?? courseDetails[1].title,
-//     subtitle: courseDetails[1].subtitle,
-//   };
-// }
-
